@@ -21,4 +21,14 @@ public class ThemeParkApplication  {
             repository.save(new ThemeParkRide("Teacups", "Spinning ride in a giant tea-cup.", 2, 4));
         };
     }
+@PostMapping(value = "/ride", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ThemeParkRide createRide(@Valid @RequestBody ThemeParkRide themeParkRide) {
+        return themeParkRideRepository.save(themeParkRide);
+    }
+
+@DeleteMapping(value = "/ride/{id}")
+    public void deleteRide(@PathVariable long id){
+        themeParkRideRepository.deleteById(id);
+    }
+
 }
